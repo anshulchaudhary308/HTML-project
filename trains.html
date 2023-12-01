@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Reservation System</title>
+    <link rel="stylesheet" href="train.css">
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+    const reservationForm = document.getElementById('reservation-form');
+    const statusMessage = document.getElementById('status-message');
+    const seatFareMessage = document.getElementById('seat-fare-message');
+    const selectedReservation = document.getElementById('selected-reservation');
+    const routeMap = document.getElementById('route-map');
+    const feedbackForm = document.getElementById('feedback-form');
+
+    reservationForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const selectedTrain = document.getElementById('train').value;
+        const selectedDate = document.getElementById('date').value;
+        const passengerName = document.getElementById('passenger-name').value;
+        const selectedSeat = document.getElementById('seat-number').value;
+
+        // Generate a random ticket fare (dummy data for now)
+        const randomFare = generateRandomFare();
+
+        // Display a pop-up with the random ticket fare
+        alert(`Your ticket fare is $${randomFare}`);
+
+
+        // You need to implement the actual reservation logic here, possibly using AJAX to communicate with the server
+        // For now, let's just display a status message
+        const reservationStatus = reserveTrain(selectedTrain, selectedDate, passengerName, selectedSeat);
+        
+        // Display status message
+        statusMessage.innerHTML = reservationStatus;
+
+        // Fetch seat availability and fare details (dummy data for now)
+        const seatAvailability = getSeatAvailability(selectedTrain, selectedDate);
+        const fareDetails = getFareDetails(selectedTrain);
+
+        // Display seat and fare information
+        seatFareMessage.innerHTML = `Seats available: ${seatAvailability}, Fare: $${fareDetails}`;
+
+        // Display selected reservation details
+        selectedReservation.innerHTML = `
+            <strong>Reservation Details:</strong><br>
+            Train: ${selectedTrain}<br>
+            Date: ${selectedDate}<br>
+            Passenger: ${passengerName}<br>
+            Seat: ${selectedSeat}
+        `;
+
+        // Display train route map (dummy data for now)
+        showTrainRouteMap(selectedTrain);
+    });
+
+    feedbackForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const userFeedback = document.getElementById('feedback').value;
+
+        // You can implement the actual feedback submission logic here
+        // For now, let's just log the feedback to the console
+        console.log(`User Feedback: ${userFeedback}`);
+    });
+
+    // Dummy function, replace with actual reservation logic
+    function reserveTrain(train, date, passenger, seat) {
+        // Perform reservation logic here (e.g., send data to the server)
+        // For now, just return a dummy status message
+        return `Reservation successful! Train: ${train}, Date: ${date}, Passenger: ${passenger}, Seat: ${seat}`;
+    }
+
+    function generateRandomFare() {
+        // Generate a random fare between 50 and 150 (dummy data)
+        return Math.floor(Math.random() * 101) + 50;
+    }
+
+    // Dummy function, replace with actual seat availability logic
+    function getSeatAvailability(train, date) {
+        // Fetch seat availability from the server or database
+        // For now, return dummy data
+        return Math.floor(Math.random() * 100); // Random number between 0 and 100
+    }
+
+    // Dummy function, replace with actual fare details logic
+    function getFareDetails(train) {
+        // Fetch fare details from the server or database
+        // For now, return dummy data
+        return Math.floor(Math.random() * 50) + 50; // Random number between 50 and 100
+    }
+
+    // Dummy function, replace with actual map integration logic
+    function showTrainRouteMap(train) {
+        // Display a static map for demonstration purposes
+        routeMap.innerHTML = `<img src="map-placeholder.png" alt="Train Route Map">`;
+    }
+});
+    </script>
+</head>
+<body>
+    <header class="header">
+        <h1>Railway Reservation System</h1>
+    </header>
+    <div id="main-divv">
+    <div id="dbody1">
+        <section id="train-info" class="bg-light">
+            <h2 class="section-heading">Available Trains</h2>
+            <ul>
+                <li><strong>Train 1 - Express:</strong> Runs from City A to City B</li>
+                    <ul>
+                        <li>Departure: 8:00 AM</li>
+                        <li>Station 1: 9:00 AM</li>
+                        <li>Station 2: 10:00 AM</li>
+                        <li>Station 3: 11:00 AM</li>
+                        <li>Arrival: 12:00 PM</li>
+                    </ul>
+                    <li>Classes: First Class, Second Class</li>
+                <li><strong>Train 2 - Local:</strong> Runs within City C</li>
+                    <ul>
+                        <li>Departure: 9:30 AM</li>
+                        <li>Station 1: 10:00 AM</li>
+                        <li>Station 2: 10:30 AM</li>
+                        <li>Station 3: 11:00 AM</li>
+                        <li>Arrival: 11:30 AM</li>
+                    </ul>
+                    <li>Classes: Economy Class</li>
+                <!-- Add more train information as needed -->
+            </ul>
+        </section>
+        <section id="train-classes" class="bg-primary">
+            <h2 class="section-heading">Train Classes</h2>
+            <p>Our trains offer various classes to cater to your travel needs:</p>
+            <ul>
+                <li><strong>First Class:</strong> Spacious seats, complimentary meals, priority boarding.</li>
+                <li><strong>Second Class:</strong> Comfortable seats, affordable pricing, onboard services.</li>
+                <li><strong>Economy Class:</strong> Standard seating, cost-effective, suitable for short journeys.</li>
+                <!-- Add more classes as needed -->
+            </ul>
+        </section>
+        <section id="contact-support" class="bg-light">
+            <h2 class="section-heading">Contact Customer Support</h2>
+            <p>If you have any questions or need assistance, our customer support team is here to help!</p>
+            <p>Email: <a href="mailto:support@railway.com">support@railway.com</a></p>
+            <p>Phone: +1 (555) 123-4567</p>
+        </section>
+    
+        <section id="faq" class="bg-primary">
+            <h2 class="section-heading">Frequently Asked Questions (FAQ)</h2>
+            <ul>
+                <li>
+                    <strong>Q: How can I make a reservation?</strong>
+                    <p>A: You can make a reservation by using our online reservation form on this page.</p>
+                </li>
+                <li>
+                    <strong>Q: Are there discounts for group bookings?</strong>
+                    <p>A: Yes, we offer discounts for group bookings. Contact our customer support for more details.</p>
+                </li>
+                <li>
+                    <strong>Q: Can I change my reservation date?</strong>
+                    <p>A: Yes, you can modify your reservation date by contacting our customer support before the travel date.</p>
+                </li>
+                <!-- Add more FAQ entries as needed -->
+            </ul>
+        </section>
+    
+        <section id="travel-tips" class="bg-light">
+            <h2 class="section-heading">Travel Tips</h2>
+            <p>Make your journey more enjoyable with these travel tips:</p>
+            <ul>
+                <li>Arrive at the station early to ensure a smooth check-in process.</li>
+                <li>Pack essentials like water, snacks, and entertainment for a comfortable journey.</li>
+                <li>Check the weather forecast for your destination and dress accordingly.</li>
+                <li>Keep your ticket and ID handy for quick verification.</li>
+                <!-- Add more travel tips as needed -->
+            </ul>
+        </section>
+    
+        <section id="special-offers" class="bg-primary">
+            <h2 class="section-heading">Special Offers</h2>
+            <p>Explore our special offers and discounts for your next trip:</p>
+            <ul>
+                <li><strong>Weekend Getaway:</strong> 20% off on weekend travels. Use code WEEKEND20.</li>
+                <li><strong>Group Discount:</strong> Book for a group of 5 or more and get 15% off each ticket.</li>
+                <li><strong>First-Time User:</strong> New users enjoy a 10% discount. Use code FIRST10.</li>
+                <!-- Add more special offers as needed -->
+            </ul>
+        </section>
+    
+        <section id="feedback-form" class="bg-light">
+            <h2 class="section-heading">Give Us Your Feedback</h2>
+            <p>We value your feedback. Please share your thoughts or report any issues below:</p>
+            <form id="feedback-form">
+                <label for="feedback">Your Feedback:</label>
+                <textarea id="feedback" name="feedback" rows="4" class="input-field" required></textarea>
+    
+                <button type="submit" class="btn-primary">Submit Feedback</button>
+            </form>
+        </section>
+    
+        <!-- ... (previous code) ... -->
+    
+        <section id="reservation-process" class="bg-primary">
+        <h2 class="section-heading">Reservation Process</h2>
+        <p>Follow these simple steps to make a reservation:</p>
+        <ol>
+            <li>Select your preferred train from the dropdown menu.</li>
+            <li>Choose the date of your journey.</li>
+            <li>Enter your name and select your desired seat.</li>
+            <li>Click the "Reserve Now" button to confirm your reservation.</li>
+        </ol>
+        <p>Once reserved, you will receive a confirmation email with your ticket details.</p>
+        </section>
+    
+        
+    
+        <section id="travel-essentials" class="bg-light">
+        <h2 class="section-heading">Travel Essentials</h2>
+        <p>Make sure you have these essentials for a comfortable journey:</p>
+        <ul>
+            <li>Valid ID and train ticket.</li>
+            <li>Comfortable clothing and footwear.</li>
+            <li>Chargers for your devices.</li>
+            <li>Travel pillow and blanket for longer journeys.</li>
+        </ul>
+        </section>
+    
+    <!-- ... (previous code) ... -->
+    
+        <section id="seat-fare-info" class="bg-primary">
+        <h2 class="section-heading">Seat Availability and Fare</h2>
+        <p>Check the availability of seats and corresponding fares for your selected train:</p>
+        <div id="seat-fare-message"></div>
+        </section>
+    
+        <section id="booking-status" class="bg-light">
+        <h2 class="section-heading">Booking Status</h2>
+        <p>View the current status of your booking and reservation details:</p>
+        <div id="status-message"></div>
+        <div id="selected-reservation"></div>
+        </section>
+    
+        <section id="train-route" class="bg-primary">
+        <h2 class="section-heading">Train Route</h2>
+        <p>Explore the route of your selected train on the interactive map below:</p>
+        <div id="route-map" class="route-map"></div>
+        </section>
+    
+        <section id="train-classes" class="bg-light">
+        <h2 class="section-heading">Train Classes</h2>
+        <p>Our trains offer various classes to cater to your travel needs. Learn more about each class:</p>
+        <ul>
+            <li><strong>First Class:</strong> Spacious seats, complimentary meals, priority boarding.</li>
+            <li><strong>Second Class:</strong> Comfortable seats, affordable pricing, onboard services.</li>
+            <li><strong>Economy Class:</strong> Standard seating, cost-effective, suitable for short journeys.</li>
+            <!-- Add more classes as needed -->
+        </ul>
+        </section>
+    
+        <section id="station-facilities" class="bg-primary">
+        <h2 class="section-heading">Station Facilities</h2>
+        <p>Our stations provide the following facilities for your convenience:</p>
+        <ul>
+            <li><strong>Waiting Areas:</strong> Comfortable seating while waiting for your train.</li>
+            <li><strong>Information Desks:</strong> Get assistance and information about train schedules.</li>
+            <li><strong>Restrooms:</strong> Clean and well-maintained restrooms for passengers.</li>
+            <li><strong>Snack Stalls:</strong> Grab a quick snack before your journey.</li>
+            <li><strong>Wi-Fi Zones:</strong> Stay connected with free Wi-Fi in designated areas.</li>
+            <li><strong>Baby Care Rooms:</strong> Facilities for mothers with infants.</li>
+            <!-- Add more facilities as needed -->
+        </ul>
+        </section>
+    
+        <section id="passenger-reviews" class="bg-light">
+        <h2 class="section-heading">Passenger Reviews</h2>
+        <p>Read what our passengers are saying about their travel experiences:</p>
+        <div class="review">
+            <p><strong>John Doe:</strong> "Excellent service! Comfortable seats and on-time arrivals."</p>
+        </div>
+        <div class="review">
+            <p><strong>Jane Smith:</strong> "The staff was helpful, and the train was clean. A pleasant journey overall."</p>
+        </div>
+       
+        </section>
+    
+    <!-- ... (previous code) ... -->
+    
+    
+    
+        <section id="amenities-on-train" class="bg-primary">
+        <h2 class="section-heading">Amenities on the Train</h2>
+        <p>Enjoy a comfortable journey with our on-train amenities:</p>
+        <ul>
+            <li><strong>Wi-Fi:</strong> Stay connected throughout your journey with complimentary Wi-Fi.</li>
+            <li><strong>Dining Car:</strong> A variety of delicious meals and beverages available.</li>
+            <li><strong>Entertainment:</strong> Enjoy movies, music, and more during your trip.</li>
+            <li><strong>Power Outlets:</strong> Convenient charging stations for your devices.</li>
+            <!-- Add more amenities as needed -->
+        </ul>
+        </section>
+    
+    
+        <!-- Add more reviews as needed -->
+        </section>
+    
+        <section id="safety-guidelines" class="bg-light">
+        <h2 class="section-heading">Safety Guidelines</h2>
+        <p>For a safe and secure journey, please follow these guidelines:</p>
+        <ul>
+            <li>Cooperate with security checks at stations.</li>
+            <li>Keep an eye on your belongings during the journey.</li>
+            <li>Follow emergency evacuation procedures if necessary.</li>
+            <li>Report any suspicious activity to railway staff or security personnel.</li>
+            <!-- Add more safety guidelines as needed -->
+        </ul>
+        </section>    
+
+
+    </div>
+    
+    <div id="dbody2">
+    <section id="reservation-form" class="bg-primary">
+        <h2 class="section-heading">Make a Reservation</h2>
+        <form id="reservation-form">
+            <label for="train">Select a Train:</label>
+            <select id="train" name="train" class="input-field">
+                <!-- Populate this dynamically from a database or API -->
+                <option value="train1">Train 1 - Express</option>
+                <option value="train2">Train 2 - Local</option>
+                <!-- Add more options as needed -->
+            </select>
+
+            <label for="date">Select Date:</label>
+            <input type="date" id="date" name="date" class="input-field" required>
+
+            <label for="passenger-name">Passenger Name:</label>
+            <input type="text" id="passenger-name" name="passenger-name" class="input-field" required>
+
+            <label for="irctc-id">IRCTC ID:</label>
+            <input type="text" name="irctc-id" id="irctc-id" class="input-field">
+
+            <label for="seat-number">Select Seat:</label>
+            <input type="number" id="seat-number" name="seat-number" class="input-field" min="1" max="100" required>
+
+            <button type="submit" class="btn-primary">Reserve Now</button>
+        </form>
+    </section>
+    </div>
+    </div>
+
+<!-- ... (remaining code) ... -->
+
+
+
+
+    <footer class="footer">
+        <p>&copy; 2023 Railway Reservation System</p>
+    </footer>
+
+    <!-- <script src="javascript"></script> -->
+</body>
+</html>

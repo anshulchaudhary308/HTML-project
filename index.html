@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Reservation System - User Profile</title>
+    <link rel="stylesheet" href="indexx.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const switchUserBtn = document.querySelector("#second button");
+            const currentUserDiv = document.getElementById("first");
+            const usernameInput = document.getElementById("user-name");
+            const irctcInput = document.getElementById("irctc");
+            const pwdInput = document.getElementById("pwd");
+
+            switchUserBtn.addEventListener("click", function () {
+                switchCurrentUser();
+            });
+
+            const connectedUsers = document.querySelectorAll("#cusers button");
+            connectedUsers.forEach(function (btn) {
+                btn.addEventListener("click", function () {
+                    const selectedUserDiv = btn.parentElement;
+                    const newUsername = selectedUserDiv.querySelector("p:first-child").innerText;
+                    const newIRCTC = selectedUserDiv.querySelector("p:nth-child(2)").innerText;
+
+                    currentUserDiv.innerHTML = `
+                        <h2>CURRENT USER</h2>
+                        <p>User Name: ${newUsername}</p>
+                        <p>IRCTC ID: ${newIRCTC}</p>
+                    `;
+
+                    // Automatically update the input fields on index.html
+                    updateIndexPageInputs(newUsername, newIRCTC);
+                });
+            });
+
+            function switchCurrentUser() {
+                const newUsername = usernameInput.value;
+                const newIRCTC = irctcInput.value;
+                const newPassword = pwdInput.value;
+
+                if (newUsername && newIRCTC && newPassword) {
+                    currentUserDiv.innerHTML = `
+                        <h2>CURRENT USER</h2>
+                        <p>User Name: ${newUsername}</p>
+                        <p>IRCTC ID: ${newIRCTC}</p>
+                    `;
+
+                    // Automatically update the input fields on index.html
+                    updateIndexPageInputs(newUsername, newIRCTC);
+
+                    usernameInput.value = "";
+                    irctcInput.value = "";
+                    pwdInput.value = "";
+                } else {
+                    alert("Please fill in all fields.");
+                }
+            }
+
+            function updateIndexPageInputs(username, irctc) {
+                // Update the input fields on index.html
+                const passengerNameInput = document.getElementById('passenger-name');
+                const irctcIdInput = document.getElementById('irctc-id');
+
+                if (passengerNameInput && irctcIdInput) {
+                    passengerNameInput.value = username;
+                    irctcIdInput.value = irctc;
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Railway Reservation System</h1>
+    </header>
+    <main>
+        <div id="main-div">
+            <div id="first">
+                <h2>CURRENT USER</h2>
+                <p>User Name:ABHISEKH</p>
+                <p>IRCTC ID:112876abc</p>
+            </div>
+            <div id="second">
+                <h2>SWITCH USER</h2>
+                <p>User Name:<textarea name="user-name" id="user-name" cols="30" rows="1"></textarea></p>
+                <p>IRCTC ID: <textarea name="irctc" id="irctc" cols="30" rows="1"></textarea></p>
+                <p>IRCTC Password: <textarea name="pwd" id="pwd" cols="30" rows="1"></textarea></p>
+                <button>SWITCH</button>
+            </div>
+        </div>
+        <div id="main-div2">
+            <h2>Connected Users</h2>
+            <div id="cusers">
+                <div class="cusersdiv black">
+                    <p>ABHISEKH</p>
+                    <p>112876abc</p>
+                    <button id="abhi">Select</button>
+                </div>
+                <div class="cusersdiv white">
+                    <p>ANSHUL</p>
+                    <p>435879bnh</p>
+                    <button id="anshul">Select</button>
+                </div>
+                <div class="cusersdiv black">
+                    <p>BHAANU</p>
+                    <p>809675jkh</p>
+                    <button id="bhaanu">Select</button>
+                </div>
+                <div class="cusersdiv white">
+                    <p>AASHISH</p>
+                    <p>870540hyu</p>
+                    <button id="aashish">Select</button>
+                </div>
+            </div>
+        </div>
+        <a href="trains.html"><h2>BOOK TICKET</h2></a>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Railway Reservation System</p>
+    </footer>
+</body>
+</html>

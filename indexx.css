@@ -1,0 +1,52 @@
+body{
+    background-color: antiquewhite;
+}
+header{
+    background-color: rgb(127,127,127);
+    border-radius: 10px;
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    font-size: 25px;
+    padding: 0;
+}
+#main-div{
+    display:flex;
+}
+#first{
+    width:50%;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: left;
+}
+#second{
+    width:50%;
+    background-color: #000;
+    border-radius: 10px;
+    text-align: left;
+    color: white;
+
+}
+h2{
+    text-align: center;
+}
+#main-div2{
+    background-color: rgb(127,127,127);
+    border-radius: 10px;
+}
+#cusers{
+    display: flex;
+    background-color: blue;
+}
+.cusersdiv{
+    width:25%;
+}
+.black{
+    background-color: #000;
+    color: #fff;
+    border-radius: 10px;
+}
+.white{
+    background-color: #fff;
+    border-radius: 10px;
+}
